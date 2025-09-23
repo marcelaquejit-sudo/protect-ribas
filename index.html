@@ -534,5 +534,40 @@ html, body { background:#000; }
       });
     });
   </script>
+
+<script>
+  // IntersectionObserver para revelar
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      // revela o próprio elemento
+      el.classList.add('in-view');
+
+      // se for um "contêiner com stagger"
+      const stagger = parseFloat(el.dataset.stagger || '0');
+      if (stagger) {
+        // revela filhos marcados como .reveal-child em cascata
+        const kids = el.querySelectorAll(':scope > .reveal-child');
+        kids.forEach((child, i) => {
+          child.style.transitionDelay = `${i * stagger}s`;
+          child.classList.add('in-view');
+        });
+      }
+
+      io.unobserve(el); // anima só uma vez
+    });
+  }, {
+    threshold: 0.12,                // começa a revelar perto de 12% visível
+    rootMargin: '0px 0px -8% 0px',  // puxa levemente o gatilho
+  });
+
+  // Observe tudo que tiver .reveal ou [data-stagger]
+  document.querySelectorAll('.reveal, [data-stagger]').forEach(el => io.observe(el));
+</script>
+
+  
 </body>
+
 
