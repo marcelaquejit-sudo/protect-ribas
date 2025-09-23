@@ -138,6 +138,31 @@
 /* base preta do site */
 html, body { background:#000; }
 
+/* ===== Scroll reveal (leve, sem libs) ===== */
+.reveal,
+.reveal-child {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--reveal-dur, .6s) ease,
+    transform var(--reveal-dur, .6s) ease;
+  will-change: opacity, transform;
+}
+
+.reveal.in-view,
+.reveal-child.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* variação da direção, se quiser usar */
+[data-reveal="left"]  { transform: translateX(-18px); }
+[data-reveal="right"] { transform: translateX(18px);  }
+[data-reveal="up"]    { transform: translateY(18px);  }
+[data-reveal="down"]  { transform: translateY(-18px); }
+
+/* quando entra na tela, zera a translação */
+.in-view[data-reveal] { transform: translate(0,0); }
 
 </style>
 
@@ -510,3 +535,4 @@ html, body { background:#000; }
     });
   </script>
 </body>
+
