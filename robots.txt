@@ -1,0 +1,11 @@
+# robots.txt para www.protectribas.com.br
+User-agent: *
+Allow: /
+
+# Ajuste estes "Disallow" conforme sua estrutura real (remova se não existir)
+Disallow: /node_modules/
+Disallow: /vendor/
+Disallow: /cgi-bin/
+
+# Sitemap
+Sitemap: https://www.protectribas.com.br/sitemap.xml

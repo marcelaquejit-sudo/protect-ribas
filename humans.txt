@@ -1,0 +1,14 @@
+/* TEAM */
+Developer: Marcela Queji
+Role: Frontend & Design
+Site: https://www.protectribas.com.br
+Contact: +55 41 98780-1458
+
+/* SITE */
+Last update: 2025-09-24
+Standards: HTML5, CSS3, ES6
+Components: TailwindCSS, IntersectionObserver
+Hosting: GitHub Pages
+
+/* THANKS */
+Tools: VS Code, Live Server
