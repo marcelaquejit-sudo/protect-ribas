@@ -243,6 +243,161 @@ html, body { background:#000; }
   }],
   "sameAs": ["https://www.instagram.com/protectribas"]
 }
+/* ===================== MOBILE REFINEMENTS ===================== */
+/* Base e legibilidade */
+:root{
+  --m-h2: clamp(18px, 4.8vw, 22px);
+  --m-h3: clamp(16px, 4.5vw, 20px);
+  --m-text: clamp(14px, 4vw, 16px);
+  --m-gap: 16px;
+  --m-radius: 18px;
+}
+@media (max-width: 640px){
+  html, body{
+    font-size: 16px;                /* base consistente */
+    line-height: 1.55;              /* leitura confortável */
+    -webkit-text-size-adjust: 100%; /* iOS zoom fix */
+  }
+
+  /* Header sticky: altura e toque */
+  header .h-16{ height: 56px !important; }
+  header a, header button{ min-height: 44px; } /* alvos de toque */
+
+  /* Âncoras com header fixo (scroll suave para seções) */
+  section[id]{ scroll-margin-top: 72px; }
+
+  /* Hero (vídeo) estável em mobile */
+  #top{
+    min-height: 70vh;               /* reduz um pouco no mobile */
+  }
+  #top video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    display:block;
+  }
+  /* Esconde controles nativos em iOS/Android quando possível */
+  video::-webkit-media-controls { display: none !important; }
+
+  /* Títulos e textos */
+  h1, .h1{ font-size: clamp(22px, 6vw, 28px); line-height: 1.2; }
+  h2, .h2{ font-size: var(--m-h2); line-height: 1.25; }
+  h3, .h3{ font-size: var(--m-h3); line-height: 1.3; }
+  p, li, .text-base{ font-size: var(--m-text); }
+
+  /* Containers e respiros */
+  section{ padding-top: 18px; padding-bottom: 18px; }
+  .max-w-6xl{ padding-left: 16px; padding-right: 16px; }
+  .mt-10{ margin-top: 20px !important; }
+  .mt-8{  margin-top: 18px !important; }
+  .mt-6{  margin-top: 14px !important; }
+  .mb-10{ margin-bottom: 20px !important; }
+
+  /* Grids: sem amontoar */
+  .grid{ gap: 16px; }
+  .grid [class*="card-premium"]{ border-radius: var(--m-radius); }
+
+  /* Cards “glass” no mobile: menos blur e sombra */
+  .card-premium{
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    padding: 16px !important;
+  }
+
+  /* Ícones e títulos dos diferenciais */
+  #diferenciais .w-14.h-14{ width: 48px !important; height: 48px !important; }
+  #diferenciais img[alt]{ width: 34px !important; height: 34px !important; }
+  #diferenciais p{ margin-top: 10px !important; }
+
+  /* Serviços – botões grandes e fáceis de tocar */
+  #servicos .btn-gold{
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+
+  /* CTA dourada (banner) – boa leitura */
+  .bg-gradient-to-r.from-\[\#9C8245\].via-\[\#BFA15A\].to-\[\#9C8245\]{
+    padding: 18px !important;
+    border-radius: var(--m-radius);
+  }
+  .bg-gradient-to-r.from-\[\#9C8245\].via-\[\#BFA15A\].to-\[\#9C8245\] h3{
+    font-size: var(--m-h2);
+  }
+  .bg-gradient-to-r.from-\[\#9C8245\].via-\[\#BFA15A\].to-\[\#9C8245\] p{
+    font-size: var(--m-text);
+  }
+
+  /* Depoimentos – clamp e botão acessível */
+  #depoimentos .clamp-3{
+    -webkit-line-clamp: 3;
+  }
+  #depoimentos button[data-toggle]{
+    min-height: 44px;
+    padding: 8px 0;
+  }
+
+  /* Seção Patrimonial – cards densidade ideal */
+  #seguranca-patrimonial .grid{
+    gap: 14px;
+  }
+  #seguranca-patrimonial .card-premium{
+    padding: 14px !important;
+  }
+  #seguranca-patrimonial h3{
+    font-size: 13.5px;
+    letter-spacing: .02em;
+  }
+  #seguranca-patrimonial p{
+    font-size: 13.5px;
+  }
+
+  /* CTA Final full-width – margens e botões */
+  #cta-final .px-6{ padding-left: 14px !important; padding-right: 14px !important; }
+  #cta-final .py-3{ padding-top: 12px !important; padding-bottom: 12px !important; }
+  #cta-final a{ min-height: 44px; }
+
+  /* Footer – evitar quebra feia e números longos */
+  footer p, footer a{ word-break: break-word; }
+
+  /* Botão flutuante WhatsApp – seguro com notch */
+  .fixed.bottom-5.right-5{
+    right: max(16px, env(safe-area-inset-right));
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  .fixed.bottom-5.right-5.w-14.h-14{
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  /* Animações de scroll (reveal): mais suaves no mobile */
+  .reveal, .reveal-child{
+    transform: translateY(14px);
+    transition-duration: .55s;
+  }
+}
+
+/* Ultra pequeno (<=360px) – micro ajustes */
+@media (max-width: 360px){
+  .max-w-6xl{ padding-left: 12px; padding-right: 12px; }
+  section{ padding-top: 14px; padding-bottom: 14px; }
+  h1, .h1{ font-size: 20px; }
+  .btn-gold, .btn-outline-gold{ padding: 10px 12px; }
+}
+
+/* High DPI/Retina – ícones nítidos */
+@media (min-resolution: 2dppx){
+  img{ image-rendering: -webkit-optimize-contrast; }
+}
+
+/* Modo econômico de movimento já respeitado acima, reforço: */
+@media (prefers-reduced-motion: reduce){
+  .reveal, .reveal-child{ transition: none !important; transform: none !important; }
+}
+
+  
 </script>
 
 </style>
@@ -650,6 +805,7 @@ html, body { background:#000; }
 
   
 </body>
+
 
 
 
